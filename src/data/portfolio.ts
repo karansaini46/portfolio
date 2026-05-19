@@ -113,7 +113,7 @@ export const portfolio = {
       featured: true,
       complexity: "Flagship System",
       architecture: ["Streaming", "Embeddings", "Queues", "OAuth", "Webhooks"],
-      screenshots: [],
+      screenshots: ["/projects/devmind-ai/review-report.png"],
     },
     {
       title: "D-Desk",
@@ -133,7 +133,7 @@ export const portfolio = {
       featured: false,
       complexity: "Realtime Product Build",
       architecture: ["Sockets", "Kanban", "Auth", "REST", "Persistence"],
-      screenshots: [],
+      screenshots: ["/projects/d-desk/dashboard.png"],
     },
     {
       title: "InvoiceFlow",
@@ -154,7 +154,7 @@ export const portfolio = {
       featured: false,
       complexity: "Workflow Platform",
       architecture: ["Payments", "PDFs", "Email", "Dashboard", "Data model"],
-      screenshots: [],
+      screenshots: ["/projects/invoiceflow/dashboard.png"],
     },
   ] satisfies Project[],
   skills: [

@@ -38,7 +38,7 @@ export default function ScreenshotGallery({ title, screenshots, large = false }:
   return (
     <>
       <div
-        className={`group relative ${large ? "min-h-[26rem]" : "min-h-[17rem]"} overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#070a0f] p-3`}
+        className={`group relative aspect-[16/10] ${large ? "min-h-[21rem]" : "min-h-[15rem]"} overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#070a0f] p-3`}
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(125,211,252,0.13),transparent_46%)] opacity-80" />
         <div className="relative h-full">
@@ -67,7 +67,7 @@ export default function ScreenshotGallery({ title, screenshots, large = false }:
                 src={screenshot}
                 alt={`${title} screenshot ${index + 1}`}
                 fill
-                className="object-cover transition duration-500 group-hover:scale-[1.025]"
+                className="object-contain transition duration-500 group-hover:scale-[1.012]"
                 sizes={large ? "(min-width: 1024px) 52vw, 92vw" : "(min-width: 1024px) 38vw, 92vw"}
                 onError={() => setFailed((current) => ({ ...current, [screenshot]: true }))}
               />
