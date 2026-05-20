@@ -10,7 +10,7 @@ const fadeUp = {
 };
 
 export default function Hero() {
-  const { personalInfo, socialLinks, resumeUrl, actions, heroModules } = portfolio;
+  const { personalInfo, socialLinks, actions, heroModules } = portfolio;
 
   return (
     <section id="top" className="relative min-h-screen overflow-hidden px-5 pb-20 pt-32 sm:pt-36">
@@ -53,9 +53,6 @@ export default function Hero() {
             </MagneticButton>
             <MagneticButton href={socialLinks.github} ariaLabel={actions.github}>
               {actions.github}
-            </MagneticButton>
-            <MagneticButton href={resumeUrl} ariaLabel={actions.resume}>
-              {actions.resume}
             </MagneticButton>
           </motion.div>
         </motion.div>
