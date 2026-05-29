@@ -63,7 +63,7 @@ export const portfolio = {
     email: "karan0saini23@gmail.com",
     github: "https://github.com/karansaini46",
     linkedin: "",
-    resume: "",
+    resume: "/Resume.pdf",
   },
   actions: {
     viewProjects: "View Work",
