@@ -1,7 +1,13 @@
 export type Project = {
+  slug: string;
   title: string;
   type: string;
-  description: string;
+  badge: string;
+  shortDescription: string;
+  fullDescription: string;
+  problem: string;
+  targetUsers: string[];
+  features: string[];
   stack: string[];
   highlights: string[];
   liveUrl: string;
@@ -10,6 +16,7 @@ export type Project = {
   complexity: string;
   architecture: string[];
   screenshots: string[];
+  description: string;
 };
 
 export type SkillGroup = {
@@ -35,10 +42,9 @@ export const portfolio = {
     ],
   },
   navigation: [
-    { label: "Work", href: "#work" },
-    { label: "Stack", href: "#stack" },
-    { label: "Proof", href: "#proof" },
-    { label: "About", href: "#about" },
+    { label: "Home", href: "/" },
+    { label: "Work", href: "/work" },
+    { label: "Stack", href: "/#stack" },
     { label: "Contact", href: "#contact" },
   ],
   personalInfo: {
@@ -49,7 +55,7 @@ export const portfolio = {
       "Full Stack Developer building full-stack systems across AI products, realtime collaboration, payment workflows, developer tools, and founder-focused technical platforms.",
     headline: "I build full-stack systems that feel like real products.",
     subheadline:
-      "From real-time collaboration and payment workflows to AI code review systems, I build apps with clean architecture, scalable APIs, databases, authentication, automation, and deployment-ready foundations.",
+      "AI products, realtime collaboration, payment workflows, developer tools, and founder-focused technical platforms.",
     availability: "Available for full-stack roles & freelance builds",
     location: "India",
   },
@@ -57,9 +63,10 @@ export const portfolio = {
     email: "karan0saini23@gmail.com",
     github: "https://github.com/karansaini46",
     linkedin: "",
+    resume: "",
   },
   actions: {
-    viewProjects: "View Projects",
+    viewProjects: "View Work",
     github: "GitHub",
     linkedin: "LinkedIn",
     liveDemo: "Live Demo",
@@ -67,6 +74,8 @@ export const portfolio = {
     unavailable: "Link unavailable",
     screenshotFallback: "Screenshot coming soon",
     closeLightbox: "Close screenshot preview",
+    viewCaseStudy: "View Case Study",
+    viewDetails: "View Details",
   },
   heroModules: [
     { label: "Auth", detail: "JWT / OAuth" },
@@ -77,14 +86,39 @@ export const portfolio = {
     { label: "Queue", detail: "Background jobs" },
     { label: "Deploy", detail: "Cloud rollout" },
   ],
-  // To add screenshots, drop image files into public/projects/<project-folder>/,
-  // then add web paths such as "/projects/d-desk/dashboard.png" below.
   projects: [
     {
+      slug: "ghostcto",
       title: "GhostCTO",
       type: "AI Technical Co-Founder Platform",
-      description:
-        "GhostCTO is an AI-powered technical co-founder platform built for non-technical founders. It helps turn startup ideas into technical roadmaps, developer-ready specs, stack decisions, quote validation, MVP scopes, hiring plans, and CTO-style guidance before founders spend money on development.",
+      badge: "Main Showcase",
+      shortDescription:
+        "An AI technical co-founder platform helping non-technical founders turn vague ideas into structured roadmaps, developer-ready specs, and validated developer quotes before spending money.",
+      fullDescription:
+        "GhostCTO is an AI-powered technical co-founder platform built for non-technical founders. It helps turn startup ideas into structured technical roadmaps, developer-ready specs, stack decisions, quote validation, MVP scopes, hiring plans, and CTO-style guidance before founders spend money on development.",
+      problem:
+        "Most non-technical founders do not know what tech stack to choose, what features are realistic, how much development should cost, or whether a developer or agency quote is fair. GhostCTO gives them technical clarity before they waste money.",
+      targetUsers: [
+        "Non-technical founders",
+        "Solo founders",
+        "Startup founders",
+        "Creators",
+        "Small business owners",
+        "Early-stage startup teams",
+        "People planning to hire developers or agencies",
+      ],
+      features: [
+        "Technical Roadmap Generator",
+        "Developer Quote / Rate Validator",
+        "Tech Stack Advisor",
+        "Developer-ready PRD / Spec Generator",
+        "MVP Scope Planner",
+        "Hiring / Job Description Generator",
+        "Developer and agency vetting assistant",
+        "Code Audit Explanation in Plain English",
+        "Ongoing CTO-style AI Chat",
+        "Build Cost and Timeline Estimator",
+      ],
       stack: [
         "Next.js",
         "TypeScript",
@@ -124,12 +158,35 @@ export const portfolio = {
         "/projects/ghostcto/quote-validator.png",
         "/projects/ghostcto/spec-generator.png",
       ],
+      description:
+        "GhostCTO is an AI-powered technical co-founder platform built for non-technical founders. It helps turn startup ideas into structured technical roadmaps, developer-ready specs, stack decisions, quote validation, MVP scopes, hiring plans, and CTO-style guidance before founders spend money on development.",
     },
     {
+      slug: "devmind-ai",
       title: "DevMind AI",
       type: "AI Code Review & Documentation Platform",
-      description:
+      badge: "Flagship System",
+      shortDescription:
+        "An AI engineering platform featuring streaming code reviews, semantic code search, GitHub webhook auto-reviews, and background queue processors.",
+      fullDescription:
         "An AI-powered engineering platform with streaming code reviews, semantic code search, GitHub webhook auto-reviews, LangChain workflows, vector embeddings, background jobs, and GitHub OAuth.",
+      problem:
+        "Developers often spend too much time reviewing code manually, translating complex logic to documentation, and missing hidden performance or security issues in pull requests. DevMind AI automates these processes, bringing AI assistance directly to the Git workflow.",
+      targetUsers: [
+        "Software engineers",
+        "Engineering managers",
+        "Open-source maintainers",
+        "DevOps engineers",
+        "Development teams seeking auto-reviews",
+      ],
+      features: [
+        "Streaming Code Reviews",
+        "Semantic Code Search",
+        "GitHub Webhook Auto-Reviews",
+        "LangChain Workflow Orchestrator",
+        "pgvector-based Code Embeddings",
+        "Background Processing Queue",
+      ],
       stack: [
         "React",
         "Node.js",
@@ -157,12 +214,33 @@ export const portfolio = {
       complexity: "Flagship System",
       architecture: ["Streaming", "Embeddings", "Queues", "OAuth", "Webhooks"],
       screenshots: ["/projects/devmind-ai/review-report.png"],
+      description:
+        "An AI-powered engineering platform with streaming code reviews, semantic code search, GitHub webhook auto-reviews, LangChain workflows, vector embeddings, background jobs, and GitHub OAuth.",
     },
     {
+      slug: "d-desk",
       title: "D-Desk",
       type: "Realtime Collaborative Task Manager",
-      description:
+      badge: "Realtime Product Build",
+      shortDescription:
+        "A collaborative Kanban task manager built with WebSocket sync, drag-and-drop workflows, and relational data persistence.",
+      fullDescription:
         "A collaborative Kanban task manager built with realtime board updates, JWT authentication, drag-and-drop workflows, REST APIs, PostgreSQL persistence, and Prisma-backed data modeling.",
+      problem:
+        "Team project boards are often slow to sync, leading to double-handling or missed task updates. D-Desk provides instant board synchronization so team members can work concurrently without friction.",
+      targetUsers: [
+        "Project managers",
+        "Remote startup teams",
+        "Freelancers",
+        "Agile product teams",
+      ],
+      features: [
+        "Instant WebSocket Synchronization",
+        "Drag-and-Drop Task Transitions",
+        "Secure JWT Authentication",
+        "RESTful API Design",
+        "Relational Data Persistence",
+      ],
       stack: ["React", "Node.js", "PostgreSQL", "Socket.io", "Prisma", "JWT", "REST API"],
       highlights: [
         "Realtime Kanban board updates",
@@ -177,12 +255,33 @@ export const portfolio = {
       complexity: "Realtime Product Build",
       architecture: ["Sockets", "Kanban", "Auth", "REST", "Persistence"],
       screenshots: ["/projects/d-desk/dashboard.png"],
+      description:
+        "A collaborative Kanban task manager built with realtime board updates, JWT authentication, drag-and-drop workflows, REST APIs, PostgreSQL persistence, and Prisma-backed data modeling.",
     },
     {
+      slug: "invoiceflow",
       title: "InvoiceFlow",
       type: "Freelancer Invoicing Platform",
-      description:
+      badge: "Workflow Platform",
+      shortDescription:
+        "A freelancer invoicing platform with proposal building, automatic PDF generation, and Stripe checkout payments.",
+      fullDescription:
         "A freelancer-focused invoicing platform with PDF invoice generation, email delivery, Stripe one-time payments, proposal builder, client management, and revenue dashboard.",
+      problem:
+        "Freelancers lose time manually creating invoices, sending payment reminders, and tracking income across multiple clients. InvoiceFlow automates invoice generation and client payments in one place.",
+      targetUsers: [
+        "Freelance developers",
+        "Contractors",
+        "Consultants",
+        "Small business owners",
+      ],
+      features: [
+        "Automated PDF Invoicing",
+        "Nodemailer Transactional Emails",
+        "Stripe One-Time Payments",
+        "Proposal and Quote Builder",
+        "Earnings Analytics Dashboard",
+      ],
       stack: ["React", "Node.js", "PostgreSQL", "Prisma", "Puppeteer", "Stripe", "Nodemailer"],
       highlights: [
         "PDF invoice generation",
@@ -198,54 +297,41 @@ export const portfolio = {
       complexity: "Workflow Platform",
       architecture: ["Payments", "PDFs", "Email", "Dashboard", "Data model"],
       screenshots: ["/projects/invoiceflow/dashboard.png"],
+      description:
+        "A freelancer-focused invoicing platform with PDF invoice generation, email delivery, Stripe one-time payments, proposal builder, client management, and revenue dashboard.",
     },
   ] satisfies Project[],
   skills: [
-    { title: "Languages", items: ["TypeScript", "JavaScript", "Python", "Go"] },
-    { title: "Frontend", items: ["React", "Next.js", "TailwindCSS"] },
-    { title: "Backend", items: ["Node.js", "Express", "REST APIs"] },
-    { title: "Databases", items: ["PostgreSQL", "MongoDB", "Supabase", "pgvector"] },
-    { title: "AI / Automation", items: ["LangChain", "Model APIs", "Vector Embeddings", "AI Agents"] },
-    { title: "Realtime / Queues", items: ["Socket.io", "Redis", "BullMQ"] },
-    { title: "DevOps / Tools", items: ["Docker", "GitHub", "Vercel", "Render", "AWS", "Cloudflare", "Postman"] },
-    { title: "ORM", items: ["Prisma"] },
+    { title: "Frontend", items: ["Next.js", "React", "TypeScript", "TailwindCSS", "Framer Motion"] },
+    { title: "Backend", items: ["Node.js", "Express", "REST APIs", "Prisma", "PostgreSQL"] },
+    { title: "AI / Data", items: ["LangChain", "Gemini AI", "pgvector", "Vector Embeddings", "Semantic Search"] },
+    { title: "Realtime / Queues", items: ["Socket.io", "Redis", "BullMQ", "Background Jobs"] },
+    { title: "DevOps", items: ["Docker", "GitHub", "Vercel", "Render", "AWS", "Cloudflare"] },
   ] satisfies SkillGroup[],
   proofPoints: [
     {
-      title: "3 full-stack product builds",
+      title: "AI Product Systems",
       description:
-        "Built project systems that combine frontend flows, backend services, database schemas, and deployable foundations.",
-      tags: ["Frontend", "Backend", "Database"],
+        "Built engineering systems combining vector search, response streaming, LLM orchestrations, and background queue processors.",
+      tags: ["LangChain", "pgvector", "Queues"],
     },
     {
-      title: "Authentication and access flows",
+      title: "Realtime Collaboration",
       description:
-        "Comfortable designing secure login flows, protected APIs, token handling, and OAuth-backed product experiences.",
-      tags: ["JWT", "OAuth", "Protected APIs"],
+        "Designed collaborative Kanban boards and interactive UIs powered by WebSocket streams for instantaneous synchronization.",
+      tags: ["Socket.io", "React", "Sockets"],
     },
     {
-      title: "Payments, PDFs, and automation",
+      title: "Payment Workflows",
       description:
-        "Built workflows for invoice generation, email delivery, one-time payments, proposals, and operational dashboards.",
-      tags: ["Stripe", "PDF", "Email"],
+        "Handled Stripe integration, automated billing, PDF invoice generation, and revenue dashboard data models.",
+      tags: ["Stripe", "Puppeteer", "Nodemailer"],
     },
     {
-      title: "Realtime and background systems",
+      title: "Backend/API Architecture",
       description:
-        "Worked with live collaboration, response streaming, Redis-backed queues, background jobs, and async processing.",
-      tags: ["Socket.io", "Redis", "BullMQ"],
-    },
-    {
-      title: "AI engineering workflows",
-      description:
-        "Built review and documentation systems using semantic retrieval, embeddings, streaming responses, and agent workflows.",
-      tags: ["LangChain", "pgvector", "Streaming"],
-    },
-    {
-      title: "Product-to-infrastructure range",
-      description:
-        "Can work across UI, API design, data modeling, deployment workflows, and product-level polish.",
-      tags: ["UI", "APIs", "Deployment"],
+        "Structured clean, scalable Node.js/Express APIs, secure JWT/OAuth access layers, and robust schema migrations.",
+      tags: ["Node.js", "Express", "Prisma", "PostgreSQL"],
     },
   ],
   about: {

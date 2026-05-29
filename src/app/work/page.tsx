@@ -3,28 +3,27 @@
 import AnimatedBackground from "@/components/AnimatedBackground";
 import ContactCTA from "@/components/ContactCTA";
 import CursorSpotlight from "@/components/CursorSpotlight";
-import Hero from "@/components/Hero";
-import IntroLoader from "@/components/IntroLoader";
 import Navigation from "@/components/Navigation";
-import ProjectPreviewStrip from "@/components/ProjectPreviewStrip";
-import ProofSnapshot from "@/components/ProofSnapshot";
-import ShowcasePreview from "@/components/ShowcasePreview";
-import StackSnapshot from "@/components/StackSnapshot";
+import ProjectCaseStudy from "@/components/ProjectCaseStudy";
+import WorkHeader from "@/components/WorkHeader";
 import { portfolio } from "@/data/portfolio";
 
-export default function Home() {
+export default function WorkPage() {
   return (
     <>
-      <IntroLoader />
       <AnimatedBackground />
       <CursorSpotlight />
       <Navigation />
       <main className="relative z-10">
-        <Hero />
-        <ShowcasePreview />
-        <ProjectPreviewStrip />
-        <StackSnapshot />
-        <ProofSnapshot />
+        <WorkHeader />
+        
+        {/* Render Case Studies for all projects */}
+        <div className="space-y-6">
+          {portfolio.projects.map((project) => (
+            <ProjectCaseStudy key={project.slug} project={project} />
+          ))}
+        </div>
+
         <ContactCTA />
       </main>
       <footer className="relative z-10 border-t border-white/10 px-5 py-8 text-center text-xs text-slate-500">
