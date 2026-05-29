@@ -15,7 +15,7 @@ export default function StackSnapshot() {
         />
 
         <div className="glow-border glass-panel rounded-[2rem] p-5 sm:p-7 lg:p-8">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {portfolio.skills.map((group, index) => (
               <motion.div
                 key={group.title}

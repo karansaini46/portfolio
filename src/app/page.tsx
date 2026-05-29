@@ -7,7 +7,6 @@ import Hero from "@/components/Hero";
 import IntroLoader from "@/components/IntroLoader";
 import Navigation from "@/components/Navigation";
 import ProjectPreviewStrip from "@/components/ProjectPreviewStrip";
-import ProofSnapshot from "@/components/ProofSnapshot";
 import ShowcasePreview from "@/components/ShowcasePreview";
 import StackSnapshot from "@/components/StackSnapshot";
 import { portfolio } from "@/data/portfolio";
@@ -24,7 +23,6 @@ export default function Home() {
         <ShowcasePreview />
         <ProjectPreviewStrip />
         <StackSnapshot />
-        <ProofSnapshot />
         <ContactCTA />
       </main>
       <footer className="relative z-10 border-t border-white/10 px-5 py-8 text-center text-xs text-slate-500">

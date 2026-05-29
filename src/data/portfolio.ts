@@ -304,9 +304,8 @@ export const portfolio = {
   ] satisfies Project[],
   skills: [
     { title: "Frontend", items: ["Next.js", "React", "TypeScript", "TailwindCSS", "Framer Motion"] },
-    { title: "Backend", items: ["Node.js", "Express", "REST APIs", "Prisma", "PostgreSQL"] },
+    { title: "Backend", items: ["Node.js", "Express", "REST APIs", "Prisma", "PostgreSQL", "Socket.io", "Redis", "BullMQ"] },
     { title: "AI / Data", items: ["LangChain", "Gemini AI", "pgvector", "Vector Embeddings", "Semantic Search"] },
-    { title: "Realtime / Queues", items: ["Socket.io", "Redis", "BullMQ", "Background Jobs"] },
     { title: "DevOps", items: ["Docker", "GitHub", "Vercel", "Render", "AWS", "Cloudflare"] },
   ] satisfies SkillGroup[],
   proofPoints: [
