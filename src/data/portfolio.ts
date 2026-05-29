@@ -64,7 +64,7 @@ export const portfolio = {
     github: "https://github.com/karansaini46",
     linkedin: "https://www.linkedin.com/in/karansaini-dev/",
     resume: "/Resume.pdf",
-    x: "",
+    x: "https://x.com/KaranSaini46",
   },
   actions: {
     viewProjects: "View Work",
