@@ -62,8 +62,9 @@ export const portfolio = {
   socialLinks: {
     email: "karan0saini23@gmail.com",
     github: "https://github.com/karansaini46",
-    linkedin: "",
+    linkedin: "https://www.linkedin.com/in/karansaini-dev/",
     resume: "/Resume.pdf",
+    x: "",
   },
   actions: {
     viewProjects: "View Work",

@@ -38,6 +38,9 @@ export default function ContactCTA() {
               <MagneticButton href={socialLinks.linkedin} ariaLabel={actions.linkedin}>
                 {actions.linkedin}
               </MagneticButton>
+              <MagneticButton href={socialLinks.x} ariaLabel="X">
+                {socialLinks.x ? "X" : "X (Coming soon)"}
+              </MagneticButton>
               <MagneticButton href={socialLinks.resume} ariaLabel="Resume">
                 {socialLinks.resume ? "Resume" : "Resume (Coming Soon)"}
               </MagneticButton>
