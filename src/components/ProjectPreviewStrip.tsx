@@ -6,6 +6,31 @@ import MagneticButton from "@/components/MagneticButton";
 import ScreenshotGallery from "@/components/ScreenshotGallery";
 import { portfolio, supportingProjects } from "@/data/portfolio";
 
+const cardVariants = {
+  hidden: (index: number) => {
+    if (index === 0) {
+      return { opacity: 0, x: -64, y: 40, rotate: -4, scale: 0.96, filter: "blur(6px)" };
+    }
+    if (index === 2) {
+      return { opacity: 0, x: 64, y: 40, rotate: 4, scale: 0.96, filter: "blur(6px)" };
+    }
+    return { opacity: 0, y: 55, scale: 0.95, filter: "blur(6px)" };
+  },
+  visible: (index: number) => ({
+    opacity: 1,
+    x: 0,
+    y: 0,
+    rotate: 0,
+    scale: 1,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.75,
+      ease: [0.16, 1, 0.3, 1] as const,
+      delay: index * 0.08,
+    }
+  })
+};
+
 export default function ProjectPreviewStrip() {
   return (
     <section className="relative px-5 pb-16 sm:pb-24">
@@ -15,11 +40,12 @@ export default function ProjectPreviewStrip() {
             <motion.article
               key={project.slug}
               className="glow-border glass-panel group flex flex-col justify-between overflow-hidden rounded-[1.75rem] p-4 sm:p-5"
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              custom={index}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ delay: index * 0.08, duration: 0.55 }}
-              whileHover={{ y: -6 }}
+              whileHover={{ y: -8, scale: 1.012, transition: { duration: 0.28, ease: "easeOut" } }}
             >
               <div>
                 <ScreenshotGallery title={project.title} screenshots={project.screenshots} />

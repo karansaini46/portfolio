@@ -10,6 +10,20 @@ const fadeUp = {
   visible: { opacity: 1, y: 0, filter: "blur(0px)" },
 };
 
+const moduleEntrance = {
+  hidden: { opacity: 0, y: 14, scale: 0.95 },
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      delay: 0.5 + index * 0.06,
+      duration: 0.55,
+      ease: [0.22, 1, 0.36, 1] as const
+    }
+  })
+};
+
 export default function Hero() {
   const { personalInfo, socialLinks, actions, heroModules } = portfolio;
 
@@ -105,16 +119,23 @@ export default function Hero() {
                     {heroModules.map((module, index) => (
                       <motion.div
                         key={module.label}
-                        className="group rounded-xl border border-white/10 bg-white/[0.045] p-2.5 transition-colors hover:border-sky-200/30 hover:bg-white/[0.07]"
-                        animate={{ y: [0, index % 2 === 0 ? -3 : 3, 0] }}
-                        transition={{ duration: 4 + index * 0.22, repeat: Infinity, ease: "easeInOut" }}
+                        custom={index}
+                        variants={moduleEntrance}
+                        initial="hidden"
+                        animate="visible"
                       >
-                        <div className="mb-2.5 flex items-center justify-between">
-                          <span className="h-1.5 w-1.5 rounded-full bg-sky-200/80 shadow-[0_0_12px_rgba(125,211,252,0.6)]" />
-                          <span className="font-mono text-[0.55rem] text-slate-600">0{index + 1}</span>
-                        </div>
-                        <p className="text-xs font-semibold text-white">{module.label}</p>
-                        <p className="mt-0.5 text-[0.65rem] text-slate-500">{module.detail}</p>
+                        <motion.div
+                          className="group rounded-xl border border-white/10 bg-white/[0.045] p-2.5 transition-colors hover:border-sky-200/30 hover:bg-white/[0.07] h-full"
+                          animate={{ y: [0, index % 2 === 0 ? -3 : 3, 0] }}
+                          transition={{ duration: 4 + index * 0.22, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                          <div className="mb-2.5 flex items-center justify-between">
+                            <span className="h-1.5 w-1.5 rounded-full bg-sky-200/80 shadow-[0_0_12px_rgba(125,211,252,0.6)]" />
+                            <span className="font-mono text-[0.55rem] text-slate-655 font-semibold">0{index + 1}</span>
+                          </div>
+                          <p className="text-xs font-semibold text-white">{module.label}</p>
+                          <p className="mt-0.5 text-[0.65rem] text-slate-500">{module.detail}</p>
+                        </motion.div>
                       </motion.div>
                     ))}
                   </div>
@@ -126,7 +147,7 @@ export default function Hero() {
                     </div>
                     <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
                       <motion.div
-                        className="h-full rounded-full bg-gradient-to-r from-slate-400 via-sky-200 to-indigo-300"
+                        className="h-full rounded-full bg-[linear-gradient(90deg,#64748b,#bae6fd,#64748b,#c7d2fe)] bg-[size:200%_100%] animate-shine"
                         initial={{ width: "24%" }}
                         animate={{ width: "92%" }}
                         transition={{ delay: 0.8, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}

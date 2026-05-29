@@ -97,6 +97,16 @@ button {
   animation: scan 4.8s ease-in-out infinite;
 }
 
+@keyframes shine {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shine {
+  background-size: 200% auto;
+  animation: shine 6s linear infinite;
+}
+
 .glass-panel {
   border: 1px solid rgba(148, 163, 184, 0.18);
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.78), rgba(2, 6, 23, 0.62));

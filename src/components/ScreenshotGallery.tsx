@@ -24,7 +24,7 @@ export default function ScreenshotGallery({ title, screenshots, large = false }:
   if (screenshots.length === 0 || availableScreenshots.length === 0) {
     return (
       <div
-        className={`relative flex ${large ? "min-h-[22rem]" : "min-h-[15rem]"} items-center justify-center overflow-hidden rounded-[1.5rem] border border-dashed border-white/15 bg-[#070a0f]`}
+        className={`relative flex ${large ? "min-h-[12rem] sm:min-h-[22rem]" : "min-h-[10rem] sm:min-h-[15rem]"} items-center justify-center overflow-hidden rounded-[1.5rem] border border-dashed border-white/15 bg-[#070a0f]`}
       >
         <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,rgba(148,163,184,0.2)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.2)_1px,transparent_1px)] [background-size:34px_34px]" />
         <div className="relative text-center">
@@ -38,7 +38,7 @@ export default function ScreenshotGallery({ title, screenshots, large = false }:
   return (
     <>
       <div
-        className={`group relative aspect-[16/10] ${large ? "min-h-[21rem]" : "min-h-[15rem]"} overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#070a0f] p-3`}
+        className={`group relative aspect-[16/10] ${large ? "min-h-[12rem] sm:min-h-[21rem]" : "min-h-[10rem] sm:min-h-[15rem]"} overflow-hidden rounded-[1.5rem] border border-white/10 bg-[#070a0f] p-3`}
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(125,211,252,0.13),transparent_46%)] opacity-80" />
         <div className="relative h-full">

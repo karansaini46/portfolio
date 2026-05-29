@@ -4,6 +4,26 @@ import { motion } from "framer-motion";
 import SectionHeader from "@/components/SectionHeader";
 import { portfolio } from "@/data/portfolio";
 
+const listContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.04,
+      delayChildren: 0.15
+    }
+  }
+};
+
+const listItem = {
+  hidden: { opacity: 0, x: -6 },
+  visible: { 
+    opacity: 1, 
+    x: 0, 
+    transition: { duration: 0.35, ease: "easeOut" as const }
+  }
+};
+
 export default function StackSnapshot() {
   return (
     <section id="stack" className="relative px-5 py-16 sm:py-24">
@@ -20,8 +40,8 @@ export default function StackSnapshot() {
               <motion.div
                 key={group.title}
                 className="relative rounded-2xl border border-white/5 bg-white/[0.02] p-4 transition-all duration-300 hover:border-sky-300/20 hover:bg-white/[0.04]"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20, filter: "blur(5px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ delay: index * 0.05, duration: 0.5 }}
               >
@@ -29,14 +49,24 @@ export default function StackSnapshot() {
                 <h4 className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-sky-200/80">
                   {group.title}
                 </h4>
-                <ul className="mt-4 space-y-2">
+                <motion.ul 
+                  className="mt-4 space-y-2"
+                  variants={listContainer}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, margin: "-60px" }}
+                >
                   {group.items.map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-xs font-medium text-slate-300">
+                    <motion.li 
+                      key={item} 
+                      className="flex items-center gap-2 text-xs font-medium text-slate-300"
+                      variants={listItem}
+                    >
                       <span className="h-1 w-1 rounded-full bg-sky-200/60" />
                       <span>{item}</span>
-                    </li>
+                    </motion.li>
                   ))}
-                </ul>
+                </motion.ul>
               </motion.div>
             ))}
           </div>
