@@ -11,7 +11,7 @@ const cardVariants = {
     if (index === 0) {
       return { opacity: 0, x: -64, y: 40, rotate: -4, scale: 0.96, filter: "blur(6px)" };
     }
-    if (index === 2) {
+    if (index === 3) {
       return { opacity: 0, x: 64, y: 40, rotate: 4, scale: 0.96, filter: "blur(6px)" };
     }
     return { opacity: 0, y: 55, scale: 0.95, filter: "blur(6px)" };
@@ -35,7 +35,7 @@ export default function ProjectPreviewStrip() {
   return (
     <section className="relative px-5 pb-16 sm:pb-24">
       <div className="mx-auto max-w-7xl">
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {supportingProjects.map((project, index) => (
             <motion.article
               key={project.slug}

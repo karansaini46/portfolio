@@ -148,8 +148,8 @@ export const portfolio = {
         "Developer and agency vetting assistance",
         "CTO-style AI chat for ongoing technical clarity",
       ],
-      liveUrl: "",
-      githubUrl: "",
+      liveUrl: "https://ghost-cto-web.vercel.app",
+      githubUrl: "https://github.com/karansaini46/GhostCTO",
       featured: true,
       complexity: "Main Showcase",
       architecture: ["AI Roadmaps", "Quote Audits", "CTO Chat", "Specs Gen", "Vetting"],
@@ -300,6 +300,77 @@ export const portfolio = {
       screenshots: ["/projects/invoiceflow/dashboard.png"],
       description:
         "A freelancer-focused invoicing platform with PDF invoice generation, email delivery, Stripe one-time payments, proposal builder, client management, and revenue dashboard.",
+    },
+    {
+      slug: "renderpilot",
+      title: "RenderPilot",
+      type: "AI Render Automation Platform",
+      badge: "In Development",
+      shortDescription:
+        "An in-development render automation platform for large files, render jobs, object storage, and production-ready asset workflows.",
+      fullDescription:
+        "RenderPilot is an in-development render automation platform designed to handle large creative files, render jobs, storage workflows, and production-ready output pipelines. It focuses on simplifying how users upload assets, manage render tasks, track processing status, store outputs, and organize generated files.",
+      problem:
+        "Creative and AI-render workflows often become messy when large files, job queues, storage configuration, and generated outputs are handled manually. RenderPilot is being built to manage that workflow from one dashboard.",
+      targetUsers: [
+        "3D Artists & Creators",
+        "VFX Studios",
+        "Creative Teams",
+        "AI Rendering Developers",
+        "Production Engineers",
+      ],
+      features: [
+        "Large file upload workflow",
+        "Render job queue management",
+        "Object storage integration",
+        "Render status tracking",
+        "Output file management",
+        "Asset preview system",
+        "Storage provider configuration"
+      ],
+      stack: [
+        "Next.js",
+        "TypeScript",
+        "React",
+        "TailwindCSS",
+        "Node.js",
+        "Express",
+        "PostgreSQL",
+        "Prisma",
+        "Redis",
+        "BullMQ",
+        "Object Storage",
+        "Docker",
+        "Vercel",
+        "Render"
+      ],
+      highlights: [
+        "Large file upload and storage workflow",
+        "Queue-based render job processing",
+        "Render status tracking and task management",
+        "Object storage integration for generated outputs",
+        "Dashboard-first interface for render tasks",
+        "Scalable backend and storage architecture"
+      ],
+      liveUrl: "",
+      githubUrl: "",
+      featured: false,
+      complexity: "In Development",
+      architecture: [
+        "Queues",
+        "Object Storage",
+        "File Uploads",
+        "Background Jobs",
+        "Docker"
+      ],
+      screenshots: [
+        "/projects/renderpilot/dashboard.png",
+        "/projects/renderpilot/upload.png",
+        "/projects/renderpilot/render-queue.png",
+        "/projects/renderpilot/storage.png"
+      ],
+      description:
+        "RenderPilot is an in-development render automation platform designed to handle large creative files, render jobs, storage workflows, and production-ready output pipelines."
     },
   ] satisfies Project[],
   skills: [
