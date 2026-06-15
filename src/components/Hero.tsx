@@ -1,164 +1,238 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
-import MagneticButton from "@/components/MagneticButton";
 import { portfolio } from "@/data/portfolio";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 16, filter: "blur(6px)" },
-  visible: { opacity: 1, y: 0, filter: "blur(0px)" },
-};
-
-const moduleEntrance = {
-  hidden: { opacity: 0, y: 14, scale: 0.95 },
-  visible: (index: number) => ({
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      delay: 0.5 + index * 0.06,
-      duration: 0.55,
-      ease: [0.22, 1, 0.36, 1] as const
-    }
-  })
-};
-
 export default function Hero() {
-  const { personalInfo, socialLinks, actions, heroModules } = portfolio;
+  const [hoveredNode, setHoveredNode] = useState<typeof portfolio.projects[0] | null>(null);
+
+  const handleNodeClick = (slug: string) => {
+    const el = document.getElementById(`project-${slug}`);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      const section = document.getElementById("selected-systems");
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+        // Dispatch an event to select this project in the Showcase
+        window.dispatchEvent(new CustomEvent("select-project", { detail: slug }));
+      }
+    }
+  };
+
+  // Node coordinates inside the 300x300 SVG system map coordinate space
+  const getProj = (slug: string) => portfolio.projects.find((p) => p.slug === slug)!;
+  const nodes = [
+    { project: getProj("ghostcto"), cx: 80, cy: 70 },
+    { project: getProj("devmind-ai"), cx: 220, cy: 60 },
+    { project: getProj("d-desk"), cx: 60, cy: 175 },
+    { project: getProj("invoiceflow"), cx: 240, cy: 165 },
+    { project: getProj("renderpilot"), cx: 110, cy: 245 },
+    { project: getProj("ether"), cx: 200, cy: 240 },
+  ];
 
   return (
-    <section id="top" className="relative min-h-[85vh] lg:min-h-[calc(100vh-6rem)] flex items-center overflow-hidden px-5 pb-12 pt-28 sm:pt-32">
-      <div className="mx-auto grid max-w-7xl w-full items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          transition={{ staggerChildren: 0.08, delayChildren: 0.2 }}
-          className="max-w-4xl"
-        >
+    <section className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-16 px-5 border-b border-border-subtle overflow-hidden">
+      {/* Background guide lines */}
+      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-px bg-border-subtle opacity-30 pointer-events-none" />
+      <div className="absolute left-1/3 inset-y-0 w-px bg-border-subtle opacity-30 pointer-events-none" />
+
+      <div className="mx-auto max-w-7xl w-full grid md:grid-cols-12 gap-12 items-center relative z-10">
+        
+        {/* Left Column: textual info */}
+        <div className="md:col-span-7 flex flex-col items-start text-left">
+          {/* Availability Badge */}
           <motion.div
-            variants={fadeUp}
-            className="inline-flex items-center gap-3 rounded-full border border-sky-200/15 bg-white/[0.05] px-4 py-2 text-xs font-medium text-sky-100/90 shadow-[0_0_40px_rgba(14,165,233,0.08)] backdrop-blur"
+            className="inline-flex items-center gap-2 rounded-full border border-accent-secondary/35 bg-accent-secondary/5 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-accent-secondary mb-6"
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
           >
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-300 opacity-45" />
-              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-sky-200" />
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent-secondary opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent-secondary" />
             </span>
-            {personalInfo.availability}
+            {portfolio.personalInfo.availability}
           </motion.div>
 
-          <motion.p variants={fadeUp} className="mt-6 font-mono text-[0.65rem] uppercase tracking-[0.38em] text-slate-500">
-            {personalInfo.positioning}
-          </motion.p>
-
-          <motion.h1
-            variants={fadeUp}
-            className="mt-4 max-w-5xl text-balance text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl lg:text-6xl"
+          {/* Subheadline Eyebrow */}
+          <motion.p
+            className="font-mono text-xs uppercase tracking-[0.24em] text-text-muted mb-3"
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05, duration: 0.4 }}
           >
-            {personalInfo.headline}
-          </motion.h1>
-
-          <motion.p variants={fadeUp} className="mt-5 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
-            {personalInfo.subheadline}
+            SYSTEM ARCHIVE // {portfolio.personalInfo.role.toUpperCase()}
           </motion.p>
 
-          <motion.div variants={fadeUp} className="mt-7 flex flex-wrap gap-3">
-            <Link href="/work" passHref legacyBehavior>
-              <MagneticButton ariaLabel={actions.viewProjects} variant="primary">
-                {actions.viewProjects}
-              </MagneticButton>
-            </Link>
-            <MagneticButton href={socialLinks.github} ariaLabel={actions.github}>
-              {actions.github}
-            </MagneticButton>
-            <MagneticButton href={socialLinks.resume} ariaLabel="Resume">
-              {socialLinks.resume ? "Resume" : "Resume (Coming soon)"}
-            </MagneticButton>
-            <MagneticButton href="#contact" ariaLabel="Contact" variant="ghost">
-              Contact
-            </MagneticButton>
+          {/* Main Headline */}
+          <h1 className="text-4xl sm:text-6xl font-sans font-bold tracking-tight text-text-primary text-balance leading-[1.05]">
+            <motion.span
+              className="block"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {portfolio.personalInfo.headline}
+            </motion.span>
+          </h1>
+
+          {/* Long Paragraph */}
+          <motion.p
+            className="mt-6 text-base sm:text-lg text-text-secondary max-w-xl leading-relaxed text-balance"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {portfolio.personalInfo.subheadline}
+          </motion.p>
+
+          {/* Action Buttons */}
+          <motion.div
+            className="mt-8 flex flex-wrap gap-4"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+          >
+            <button
+              onClick={() => document.getElementById("selected-systems")?.scrollIntoView({ behavior: "smooth" })}
+              className="rounded bg-accent-primary px-5 py-2.5 font-mono text-xs uppercase tracking-wider text-white hover:bg-accent-primary/85 transition-colors cursor-pointer"
+            >
+              {portfolio.actions.viewProjects}
+            </button>
+            <a
+              href="#contact"
+              className="rounded border border-border-visible bg-surface-raised px-5 py-2.5 font-mono text-xs uppercase tracking-wider text-text-primary hover:border-text-secondary transition-colors"
+            >
+              Get in touch
+            </a>
           </motion.div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className="relative mx-auto w-full max-w-xl lg:max-w-none"
-          initial={{ opacity: 0, y: 24, rotateX: 6 }}
-          animate={{ opacity: 1, y: 0, rotateX: 0 }}
-          transition={{ delay: 0.45, duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <div className="glow-border glass-panel relative overflow-hidden rounded-[2rem] p-4 sm:p-5">
-            <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-sky-200/70 to-transparent" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(125,211,252,0.12),transparent_44%)]" />
-            <div className="relative rounded-[1.5rem] border border-white/10 bg-black/30 p-4">
-              <div className="mb-4 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <span className="h-2 w-2 rounded-full bg-slate-500" />
-                  <span className="h-2 w-2 rounded-full bg-slate-400" />
-                  <span className="h-2 w-2 rounded-full bg-sky-200" />
-                </div>
-                <span className="font-mono text-[0.6rem] uppercase tracking-[0.28em] text-slate-500">system cockpit</span>
-              </div>
+        {/* Right Column: Interactive Systems Map */}
+        <div className="md:col-span-5 flex flex-col items-center justify-center">
+          <div className="relative w-full max-w-[360px] aspect-square rounded-2xl border border-border-subtle bg-background-elevated p-6 flex flex-col justify-between overflow-hidden">
+            {/* Fine coordinate markers */}
+            <div className="absolute top-2 left-3 font-mono text-[8px] text-text-muted">SYS_MAP // MAP_COORD: 0x4A</div>
+            <div className="absolute bottom-2 right-3 font-mono text-[8px] text-text-muted">ALIGN_MODE: SVG</div>
 
-              <div className="relative min-h-[20rem] lg:min-h-[22rem] overflow-hidden rounded-2xl border border-white/10 bg-[#070b12] p-4">
-                <div className="animate-scan absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-sky-200/10 to-transparent" />
-                <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(to_right,rgba(148,163,184,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.15)_1px,transparent_1px)] [background-size:32px_32px]" />
-                <div className="relative flex h-full flex-col gap-4">
-                  <div className="rounded-xl border border-white/10 bg-white/[0.04] p-3.5">
-                    <div className="flex items-center justify-between gap-3">
-                      <div>
-                        <p className="font-mono text-[0.6rem] uppercase tracking-[0.28em] text-slate-500">active build layer</p>
-                        <h2 className="mt-1 text-xl font-semibold text-white">{personalInfo.name}</h2>
-                      </div>
-                      <div className="rounded-full border border-sky-200/20 bg-sky-200/10 px-2.5 py-0.5 font-mono text-[0.6rem] uppercase tracking-[0.22em] text-sky-100">
-                        online
-                      </div>
-                    </div>
-                  </div>
+            {/* Interactive SVG Diagram */}
+            <svg viewBox="0 0 300 300" className="w-full h-full text-text-muted relative z-10 select-none">
+              {/* Outer Orbit Path */}
+              <circle cx="150" cy="150" r="105" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="3 3" className="opacity-25" />
+              <circle cx="150" cy="150" r="65" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="3 3" className="opacity-25" />
 
-                  <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
-                    {heroModules.map((module, index) => (
-                      <motion.div
-                        key={module.label}
-                        custom={index}
-                        variants={moduleEntrance}
-                        initial="hidden"
-                        animate="visible"
-                      >
-                        <motion.div
-                          className="group rounded-xl border border-white/10 bg-white/[0.045] p-2.5 transition-colors hover:border-sky-200/30 hover:bg-white/[0.07] h-full"
-                          animate={{ y: [0, index % 2 === 0 ? -3 : 3, 0] }}
-                          transition={{ duration: 4 + index * 0.22, repeat: Infinity, ease: "easeInOut" }}
-                        >
-                          <div className="mb-2.5 flex items-center justify-between">
-                            <span className="h-1.5 w-1.5 rounded-full bg-sky-200/80 shadow-[0_0_12px_rgba(125,211,252,0.6)]" />
-                            <span className="font-mono text-[0.55rem] text-slate-655 font-semibold">0{index + 1}</span>
-                          </div>
-                          <p className="text-xs font-semibold text-white">{module.label}</p>
-                          <p className="mt-0.5 text-[0.65rem] text-slate-500">{module.detail}</p>
-                        </motion.div>
-                      </motion.div>
-                    ))}
-                  </div>
+              {/* Central Hub Node */}
+              <circle cx="150" cy="150" r="5" className="fill-background stroke-accent-primary" strokeWidth="1.5" />
+              
+              {/* Node connection lines */}
+              {nodes.map(({ project, cx, cy }) => {
+                const isHovered = hoveredNode?.slug === project.slug;
+                return (
+                  <motion.line
+                    key={`line-${project.slug}`}
+                    x1="150"
+                    y1="150"
+                    x2={cx}
+                    y2={cy}
+                    stroke={isHovered ? "var(--accent-primary)" : "currentColor"}
+                    strokeWidth={isHovered ? "1" : "0.5"}
+                    className="opacity-20"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 0.8 }}
+                  />
+                );
+              })}
 
-                  <div className="mt-auto rounded-xl border border-white/10 bg-black/25 p-3.5">
-                    <div className="mb-2.5 flex items-center justify-between font-mono text-[0.6rem] uppercase tracking-[0.24em] text-slate-500">
-                      <span>deployment readiness</span>
-                      <span className="text-sky-100">stable</span>
-                    </div>
-                    <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
-                      <motion.div
-                        className="h-full rounded-full bg-[linear-gradient(90deg,#64748b,#bae6fd,#64748b,#c7d2fe)] bg-[size:200%_100%] animate-shine"
-                        initial={{ width: "24%" }}
-                        animate={{ width: "92%" }}
-                        transition={{ delay: 0.8, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+              {/* Interactive Nodes */}
+              {nodes.map(({ project, cx, cy }) => {
+                const isHovered = hoveredNode?.slug === project.slug;
+                const isAI = project.category === "ai";
+                const isRealtime = project.category === "realtime";
+                
+                return (
+                  <g
+                    key={project.slug}
+                    className="cursor-pointer"
+                    onMouseEnter={() => setHoveredNode(project)}
+                    onMouseLeave={() => setHoveredNode(null)}
+                    onClick={() => handleNodeClick(project.slug)}
+                  >
+                    {/* Ring highlight on hover */}
+                    {isHovered && (
+                      <motion.circle
+                        cx={cx}
+                        cy={cy}
+                        r="8"
+                        className="stroke-accent-primary"
+                        strokeWidth="0.75"
+                        fill="none"
+                        initial={{ scale: 0.6, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 0.7 }}
                       />
-                    </div>
+                    )}
+                    {/* Node Core */}
+                    <circle
+                      cx={cx}
+                      cy={cy}
+                      r={isHovered ? "4" : "3.5"}
+                      className={`transition-colors duration-200 ${
+                        isHovered
+                          ? "fill-accent-primary"
+                          : isAI
+                          ? "fill-accent-gold"
+                          : isRealtime
+                          ? "fill-accent-secondary"
+                          : "fill-text-secondary"
+                      }`}
+                    />
+                    
+                    {/* Compact identifier next to node */}
+                    <text
+                      x={cx + (cx > 150 ? 8 : -8)}
+                      y={cy + 3}
+                      textAnchor={cx > 150 ? "start" : "end"}
+                      className="font-mono text-[7px] uppercase tracking-wider fill-text-secondary font-semibold"
+                    >
+                      {project.title}
+                    </text>
+                  </g>
+                );
+              })}
+            </svg>
+
+            {/* Dynamic Node Details Display HUD */}
+            <div className="h-16 border-t border-border-subtle pt-3 flex flex-col justify-center font-mono select-none">
+              {hoveredNode ? (
+                <motion.div
+                  initial={{ opacity: 0, y: 2 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-left"
+                >
+                  <div className="flex items-center justify-between text-[9px]">
+                    <span className="text-accent-primary uppercase tracking-wider font-bold">
+                      {hoveredNode.title}
+                    </span>
+                    <span className="text-text-muted uppercase">
+                      STATUS: {hoveredNode.status}
+                    </span>
                   </div>
+                  <div className="text-[8px] text-text-secondary mt-1 overflow-hidden text-ellipsis whitespace-nowrap">
+                    {hoveredNode.stack.slice(0, 4).join(" + ")}
+                  </div>
+                </motion.div>
+              ) : (
+                <div className="text-left text-text-muted text-[9px] uppercase tracking-wider flex items-center justify-between">
+                  <span>SELECT NODE TO EXPLORE</span>
+                  <span className="animate-pulse">_</span>
                 </div>
-              </div>
+              )}
             </div>
           </div>
-        </motion.div>
+        </div>
+
       </div>
     </section>
   );

@@ -1,6 +1,20 @@
 import type { Metadata } from "next";
+import { Inter, Space_Mono } from "next/font/google";
 import { portfolio } from "@/data/portfolio";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-sans",
+});
+
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
+  variable: "--font-mono",
+});
 
 export const metadata: Metadata = {
   title: portfolio.seo.title,
@@ -30,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className={`scroll-smooth ${inter.variable} ${spaceMono.variable}`}>
       <body>{children}</body>
     </html>
   );

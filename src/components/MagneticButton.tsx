@@ -15,10 +15,10 @@ type MagneticButtonProps = {
 
 const variants = {
   primary:
-    "border-sky-300/40 bg-sky-100 text-slate-950 shadow-[0_0_40px_rgba(125,211,252,0.14)] hover:bg-white",
+    "border-accent-primary bg-accent-primary text-white hover:bg-accent-primary/90",
   secondary:
-    "border-white/12 bg-white/[0.06] text-slate-100 hover:border-sky-300/35 hover:bg-white/[0.1]",
-  ghost: "border-transparent bg-transparent text-slate-300 hover:text-white",
+    "border-border-subtle bg-surface text-text-primary hover:border-border-visible",
+  ghost: "border-transparent bg-transparent text-text-secondary hover:text-text-primary",
 };
 
 export default function MagneticButton({
@@ -47,7 +47,7 @@ export default function MagneticButton({
     y.set(0);
   }
 
-  const baseClass = `inline-flex min-h-11 items-center justify-center rounded-full border px-5 py-2.5 text-sm font-semibold transition-colors duration-200 ${variants[variant]} ${className}`;
+  const baseClass = `inline-flex min-h-10 items-center justify-center rounded border px-5 py-2.5 text-xs font-semibold uppercase tracking-wider font-mono transition-colors duration-200 ${variants[variant]} ${className}`;
 
   if (!href && !onClick) {
     return (
