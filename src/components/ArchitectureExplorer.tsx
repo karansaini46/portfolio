@@ -7,7 +7,7 @@ import { portfolio } from "@/data/portfolio";
 type Coordinates = { x: number; y: number };
 
 export default function ArchitectureExplorer() {
-  const [activeSlug, setActiveSlug] = useState(portfolio.projects[0].slug);
+  const [activeSlug, setActiveSlug] = useState("ether");
   const activeProject = portfolio.projects.find((p) => p.slug === activeSlug) || portfolio.projects[0];
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
 
@@ -84,7 +84,7 @@ export default function ArchitectureExplorer() {
 
       <div className="mx-auto max-w-[90rem]">
         {/* Section Header */}
-        <div className="mb-16 text-left max-w-3xl">
+        <div className="mb-12 text-left max-w-3xl">
           <p className="font-mono text-xs uppercase tracking-[0.24em] text-accent-secondary">
             02 // SYSTEM SCHEMATICS
           </p>
@@ -92,8 +92,27 @@ export default function ArchitectureExplorer() {
             Project Architecture Explorer
           </h2>
           <p className="mt-4 text-base text-text-secondary">
-            Visual dependency flow diagrams showcasing components, databases, server routing, and background systems for the active project.
+            Visual dependency flow diagrams showcasing components, databases, server routing, and background systems. Select a system below to explore its architecture.
           </p>
+          
+          <div className="mt-8 flex flex-wrap gap-2">
+            {portfolio.projects.filter(p => p.archNodes && p.archNodes.length > 0).map((project) => {
+              const isActive = activeSlug === project.slug;
+              return (
+                <button
+                  key={project.slug}
+                  onClick={() => setActiveSlug(project.slug)}
+                  className={`px-4 py-2 rounded-full font-mono text-xs uppercase tracking-wider transition-all border ${
+                    isActive 
+                      ? "bg-accent-primary text-white border-accent-primary shadow-[0_0_15px_rgba(180,95,53,0.3)]" 
+                      : "bg-surface text-text-secondary border-border-subtle hover:border-border-visible hover:text-text-primary"
+                  }`}
+                >
+                  {project.title}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-12 gap-12 items-center">
