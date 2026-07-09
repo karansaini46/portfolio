@@ -1,17 +1,12 @@
 "use client";
 
 import AnimatedBackground from "@/components/AnimatedBackground";
-import ContactCTA from "@/components/ContactCTA";
 import CursorSpotlight from "@/components/CursorSpotlight";
 import Hero from "@/components/Hero";
 import IntroLoader from "@/components/IntroLoader";
 import Navigation from "@/components/Navigation";
 import ShowcasePreview from "@/components/ShowcasePreview";
-import ArchitectureExplorer from "@/components/ArchitectureExplorer";
-import StackSnapshot from "@/components/StackSnapshot";
-import About from "@/components/About";
 import CommandPalette from "@/components/CommandPalette";
-import UnderDevelopment from "@/components/UnderDevelopment";
 import { portfolio } from "@/data/portfolio";
 
 export default function Home() {
@@ -23,18 +18,15 @@ export default function Home() {
       <Navigation />
       <CommandPalette />
       
-      <main className="relative z-10">
+      <main className="relative z-10 flex flex-col min-h-screen">
         <Hero />
-        <ShowcasePreview />
-        <ArchitectureExplorer />
-        <StackSnapshot />
-        <UnderDevelopment />
-        <About />
-        <ContactCTA />
+        <div className="pb-32">
+          <ShowcasePreview />
+        </div>
       </main>
 
-      <footer className="relative z-10 border-t border-border-subtle px-5 py-8 text-center text-xs text-text-muted">
-        © {new Date().getFullYear()} {portfolio.personalInfo.name}. Built for product-grade full-stack work.
+      <footer className="relative z-10 border-t border-border-subtle bg-surface/50 backdrop-blur-md px-5 py-8 text-center font-mono text-[10px] text-text-muted">
+        © {new Date().getFullYear()} {portfolio.personalInfo.name}. Engineered with precision.
       </footer>
     </>
   );

@@ -61,9 +61,8 @@ export const portfolio = {
   },
   navigation: [
     { label: "Home", href: "/" },
-    { label: "Work", href: "/work" },
-    { label: "Stack", href: "/#stack" },
-    { label: "Contact", href: "#contact" },
+    { label: "Projects", href: "/projects" },
+    { label: "About", href: "/about" },
   ],
   personalInfo: {
     name: "Karan Saini",
