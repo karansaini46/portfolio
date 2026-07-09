@@ -7,7 +7,7 @@ import { portfolio } from "@/data/portfolio";
 export default function ProofSnapshot() {
   return (
     <section id="proof" className="relative px-5 py-16 sm:py-24">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-[90rem]">
         <SectionHeader
           eyebrow="engineering proof"
           title="Capability shown through product depth."

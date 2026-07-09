@@ -9,7 +9,7 @@ export default function StackSystem() {
 
   return (
     <section id="stack" className="relative overflow-hidden px-5 py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-[90rem]">
         <SectionHeader
           eyebrow="engineering stack"
           title="A system map for building product-grade applications."

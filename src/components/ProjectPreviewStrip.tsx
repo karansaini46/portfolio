@@ -34,7 +34,7 @@ const cardVariants = {
 export default function ProjectPreviewStrip() {
   return (
     <section className="relative px-5 pb-16 sm:pb-24">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-[90rem]">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {supportingProjects.map((project, index) => (
             <motion.article

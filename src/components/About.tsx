@@ -8,7 +8,7 @@ export default function About() {
       {/* Structural guidelines */}
       <div className="absolute inset-y-0 left-1/4 w-px bg-border-subtle opacity-20 pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl grid lg:grid-cols-12 gap-12 items-start">
+      <div className="mx-auto max-w-[90rem] grid lg:grid-cols-12 gap-12 items-start">
         {/* Left Column: About Copy */}
         <div className="lg:col-span-6 text-left">
           <p className="font-mono text-xs uppercase tracking-[0.24em] text-accent-secondary">

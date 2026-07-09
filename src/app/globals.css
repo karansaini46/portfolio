@@ -49,6 +49,7 @@ html {
   background: var(--background);
   color: var(--text-primary);
   font-family: var(--font-sans);
+  font-size: 106.25%; /* Zoom in by increasing base font size slightly to 17px */
 }
 
 body {
@@ -57,6 +58,7 @@ body {
   background-color: var(--background);
   color: var(--text-primary);
   font-family: var(--font-sans);
+  font-size: 1rem;
 }
 
 /* Subtle grain overlay */

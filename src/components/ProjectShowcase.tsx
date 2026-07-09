@@ -10,7 +10,7 @@ import { flagshipProject, portfolio, supportingProjects } from "@/data/portfolio
 export default function ProjectShowcase() {
   return (
     <section id="work" className="relative px-5 py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-[90rem]">
         <SectionHeader
           eyebrow="selected work"
           title="Projects built like products, not exercises."

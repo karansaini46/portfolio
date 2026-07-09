@@ -38,13 +38,13 @@ export default function Hero() {
       <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-px bg-border-subtle opacity-30 pointer-events-none" />
       <div className="absolute left-1/3 inset-y-0 w-px bg-border-subtle opacity-30 pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl w-full grid md:grid-cols-12 gap-12 items-center relative z-10">
+      <div className="mx-auto max-w-[90rem] w-full grid md:grid-cols-12 gap-12 items-center relative z-10">
         
         {/* Left Column: textual info */}
         <div className="md:col-span-7 flex flex-col items-start text-left">
           {/* Availability Badge */}
           <motion.div
-            className="inline-flex items-center gap-2 rounded-full border border-accent-secondary/35 bg-accent-secondary/5 px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-accent-secondary mb-6"
+            className="inline-flex items-center gap-2 rounded-full border border-accent-secondary/35 bg-accent-secondary/5 px-3 py-1 font-mono text-[0.625rem] uppercase tracking-wider text-accent-secondary mb-6"
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
@@ -112,10 +112,10 @@ export default function Hero() {
 
         {/* Right Column: Interactive Systems Map */}
         <div className="md:col-span-5 flex flex-col items-center justify-center">
-          <div className="relative w-full max-w-[360px] aspect-square rounded-2xl border border-border-subtle bg-background-elevated p-6 flex flex-col justify-between overflow-hidden">
+          <div className="relative w-full max-w-[24rem] aspect-square rounded-2xl border border-border-subtle bg-background-elevated p-6 flex flex-col justify-between overflow-hidden">
             {/* Fine coordinate markers */}
-            <div className="absolute top-2 left-3 font-mono text-[8px] text-text-muted">SYS_MAP // MAP_COORD: 0x4A</div>
-            <div className="absolute bottom-2 right-3 font-mono text-[8px] text-text-muted">ALIGN_MODE: SVG</div>
+            <div className="absolute top-2 left-3 font-mono text-[0.5rem] text-text-muted">SYS_MAP // MAP_COORD: 0x4A</div>
+            <div className="absolute bottom-2 right-3 font-mono text-[0.5rem] text-text-muted">ALIGN_MODE: SVG</div>
 
             {/* Interactive SVG Diagram */}
             <svg viewBox="0 0 300 300" className="w-full h-full text-text-muted relative z-10 select-none">
@@ -194,7 +194,7 @@ export default function Hero() {
                       x={cx + (cx > 150 ? 8 : -8)}
                       y={cy + 3}
                       textAnchor={cx > 150 ? "start" : "end"}
-                      className="font-mono text-[7px] uppercase tracking-wider fill-text-secondary font-semibold"
+                      className="font-mono text-[0.4375rem] uppercase tracking-wider fill-text-secondary font-semibold"
                     >
                       {project.title}
                     </text>
@@ -211,7 +211,7 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   className="text-left"
                 >
-                  <div className="flex items-center justify-between text-[9px]">
+                  <div className="flex items-center justify-between text-[0.5625rem]">
                     <span className="text-accent-primary uppercase tracking-wider font-bold">
                       {hoveredNode.title}
                     </span>
@@ -219,12 +219,12 @@ export default function Hero() {
                       STATUS: {hoveredNode.status}
                     </span>
                   </div>
-                  <div className="text-[8px] text-text-secondary mt-1 overflow-hidden text-ellipsis whitespace-nowrap">
+                  <div className="text-[0.5rem] text-text-secondary mt-1 overflow-hidden text-ellipsis whitespace-nowrap">
                     {hoveredNode.stack.slice(0, 4).join(" + ")}
                   </div>
                 </motion.div>
               ) : (
-                <div className="text-left text-text-muted text-[9px] uppercase tracking-wider flex items-center justify-between">
+                <div className="text-left text-text-muted text-[0.5625rem] uppercase tracking-wider flex items-center justify-between">
                   <span>SELECT NODE TO EXPLORE</span>
                   <span className="animate-pulse">_</span>
                 </div>

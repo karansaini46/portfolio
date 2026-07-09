@@ -46,7 +46,7 @@ export default function WorkPage() {
       <CursorSpotlight />
       <Navigation />
       <CommandPalette />
-      <main className="relative z-10 mx-auto max-w-7xl px-5 pt-16">
+      <main className="relative z-10 mx-auto max-w-[90rem] px-5 pt-16">
         <WorkHeader />
 
         <div className="grid lg:grid-cols-12 gap-12 items-start mt-8">

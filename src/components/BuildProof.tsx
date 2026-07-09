@@ -7,7 +7,7 @@ import { portfolio } from "@/data/portfolio";
 export default function BuildProof() {
   return (
     <section id="proof" className="relative px-5 py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-[90rem]">
         <SectionHeader
           eyebrow="engineering proof"
           title="Verified capability through real build depth."

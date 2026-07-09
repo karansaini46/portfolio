@@ -75,7 +75,7 @@ export default function Navigation() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 h-16">
+      <div className="mx-auto flex max-w-[90rem] items-center justify-between px-5 h-16">
         {/* Left Side: Logo & Wordmark */}
         <Link href="/" className="flex items-center gap-3 group">
           <BrandMark size={24} className="transition-transform group-hover:rotate-45" />

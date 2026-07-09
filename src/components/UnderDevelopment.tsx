@@ -10,7 +10,7 @@ export default function UnderDevelopment() {
 
   return (
     <section id="under-development" className="relative px-5 py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-[90rem]">
         <div className="mb-16 text-left max-w-3xl">
           <p className="font-mono text-xs uppercase tracking-[0.24em] text-sky-400">
             SYS_LAB // ACTIVE WORK

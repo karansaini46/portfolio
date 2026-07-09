@@ -82,7 +82,7 @@ export default function ArchitectureExplorer() {
       {/* Structural layout guides */}
       <div className="absolute inset-y-0 right-1/4 w-px bg-border-subtle opacity-20 pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl">
+      <div className="mx-auto max-w-[90rem]">
         {/* Section Header */}
         <div className="mb-16 text-left max-w-3xl">
           <p className="font-mono text-xs uppercase tracking-[0.24em] text-accent-secondary">
