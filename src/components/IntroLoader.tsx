@@ -4,8 +4,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState, useCallback } from "react";
 
 const TOTAL_DURATION = 1600;
-const SMOOTH = [0.22, 1, 0.36, 1] as const;
-const SHARP = [0.16, 1, 0.3, 1] as const;
+const SMOOTH: [number, number, number, number] = [0.22, 1, 0.36, 1];
+const SHARP: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export default function IntroLoader() {
   const [visible, setVisible] = useState(() => {
@@ -54,7 +54,7 @@ export default function IntroLoader() {
             opacity: 0,
             scale: 1.05,
             filter: "blur(12px)",
-            transition: { duration: 0.4, ease: SHARP as unknown as number[] },
+            transition: { duration: 0.4, ease: SHARP },
           }}
         >
           {/* Grid */}
@@ -113,7 +113,7 @@ export default function IntroLoader() {
               transition={{
                 rotate: { duration: 3, repeat: Infinity, ease: "linear" },
                 opacity: { duration: 0.4, delay: 0.1 },
-                scale: { duration: 0.6, delay: 0.1, ease: SMOOTH as unknown as number[] },
+                scale: { duration: 0.6, delay: 0.1, ease: SMOOTH },
               }}
             >
               {/* Ring circle (SVG for crisp stroke) */}
@@ -174,7 +174,7 @@ export default function IntroLoader() {
               transition={{
                 rotate: { duration: 4, repeat: Infinity, ease: "linear" },
                 opacity: { duration: 0.4, delay: 0.2 },
-                scale: { duration: 0.6, delay: 0.2, ease: SMOOTH as unknown as number[] },
+                scale: { duration: 0.6, delay: 0.2, ease: SMOOTH },
               }}
             >
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 190 190">
@@ -221,7 +221,7 @@ export default function IntroLoader() {
               transition={{
                 rotate: { duration: 2, repeat: Infinity, ease: "linear" },
                 opacity: { duration: 0.3, delay: 0.35 },
-                scale: { duration: 0.5, delay: 0.35, ease: SMOOTH as unknown as number[] },
+                scale: { duration: 0.5, delay: 0.35, ease: SMOOTH },
               }}
             >
               <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
