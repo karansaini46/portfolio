@@ -11,6 +11,7 @@ import ArchitectureExplorer from "@/components/ArchitectureExplorer";
 import StackSnapshot from "@/components/StackSnapshot";
 import About from "@/components/About";
 import CommandPalette from "@/components/CommandPalette";
+import UnderDevelopment from "@/components/UnderDevelopment";
 import { portfolio } from "@/data/portfolio";
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
         <ShowcasePreview />
         <ArchitectureExplorer />
         <StackSnapshot />
+        <UnderDevelopment />
         <About />
         <ContactCTA />
       </main>

@@ -55,7 +55,9 @@ export default function About() {
           </h2>
 
           <div className="space-y-6">
-            {experimentalProjects.map((entry) => (
+            {experimentalProjects
+              .filter((entry) => entry.status === "experimental")
+              .map((entry) => (
               <div
                 key={entry.slug}
                 className="rounded-xl border border-border-subtle bg-background-elevated/40 p-6 flex flex-col justify-between"
