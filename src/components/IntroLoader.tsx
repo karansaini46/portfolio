@@ -8,15 +8,8 @@ const SMOOTH: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const SHARP: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export default function IntroLoader() {
-  const [visible, setVisible] = useState(() => {
-    if (typeof window !== "undefined") {
-      const hasSeenIntro = sessionStorage.getItem("has-seen-intro");
-      const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-      return !(hasSeenIntro || reducedMotion);
-    }
-    return true;
-  });
-
+  // Always start true to match server — avoids hydration mismatch
+  const [visible, setVisible] = useState(true);
   const [counter, setCounter] = useState(0);
 
   const handleExit = useCallback(() => {
@@ -24,6 +17,20 @@ export default function IntroLoader() {
     setVisible(false);
   }, []);
 
+  // Check session on mount — skip instantly for returning visitors
+  useEffect(() => {
+    const hasSeenIntro = sessionStorage.getItem("has-seen-intro");
+    const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (hasSeenIntro || reducedMotion) {
+      setVisible(false);
+      return;
+    }
+    // First-time visitor: start exit timer
+    const timeout = setTimeout(handleExit, TOTAL_DURATION);
+    return () => clearTimeout(timeout);
+  }, [handleExit]);
+
+  // Counter animation
   useEffect(() => {
     if (!visible) return;
     const start = performance.now();
@@ -35,12 +42,6 @@ export default function IntroLoader() {
     };
     requestAnimationFrame(tick);
   }, [visible]);
-
-  useEffect(() => {
-    if (!visible) return;
-    const timeout = setTimeout(handleExit, TOTAL_DURATION);
-    return () => clearTimeout(timeout);
-  }, [visible, handleExit]);
 
   return (
     <AnimatePresence>
