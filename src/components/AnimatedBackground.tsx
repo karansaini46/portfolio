@@ -39,34 +39,22 @@ export default function AnimatedBackground() {
         className="absolute inset-[-50px] z-[1]"
         style={{ x: springX, y: springY, willChange: "transform" }}
       >
-        {/* Soft Animated Glow Blobs */}
-        <motion.div 
-          className="absolute top-[20%] left-[20%] w-[40vw] h-[40vw] rounded-full bg-accent-primary opacity-[0.03] blur-[100px] will-change-transform"
-          animate={{
-            x: [0, 50, -20, 0],
-            y: [0, -40, 20, 0],
-            scale: [1, 1.1, 0.9, 1]
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+        {/* Soft Animated Glow Blobs — radial-gradient instead of filter:blur()
+            to avoid expensive GPU blur textures. CSS @keyframes instead of
+            Framer Motion to keep animation on the compositor thread. */}
+        <div 
+          className="absolute top-[20%] left-[20%] w-[40vw] h-[40vw] rounded-full animate-blob1"
+          style={{ background: "radial-gradient(circle, rgba(180,95,53,0.03) 0%, rgba(180,95,53,0) 70%)" }}
         />
         
-        <motion.div 
-          className="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] rounded-full bg-accent-secondary opacity-[0.02] blur-[120px] will-change-transform"
-          animate={{
-            x: [0, -60, 30, 0],
-            y: [0, 50, -30, 0],
-            scale: [1, 1.2, 0.8, 1]
-          }}
-          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        <div 
+          className="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] rounded-full animate-blob2"
+          style={{ background: "radial-gradient(circle, rgba(156,165,121,0.02) 0%, rgba(156,165,121,0) 70%)" }}
         />
 
-        <motion.div 
-          className="absolute top-[40%] right-[40%] w-[30vw] h-[30vw] rounded-full bg-accent-gold opacity-[0.02] blur-[90px] will-change-transform"
-          animate={{
-            x: [0, 40, -40, 0],
-            y: [0, 40, -40, 0],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        <div 
+          className="absolute top-[40%] right-[40%] w-[30vw] h-[30vw] rounded-full animate-blob3"
+          style={{ background: "radial-gradient(circle, rgba(208,181,120,0.02) 0%, rgba(208,181,120,0) 70%)" }}
         />
         
         {/* Fine, subtle grid pattern */}

@@ -16,18 +16,20 @@ export default function CursorSpotlight() {
       const isText = ["P", "SPAN", "H1", "H2", "H3", "H4", "H5", "H6", "LI", "A", "BUTTON", "INPUT", "TEXTAREA"].includes(tag);
       const hasTextParent = target.closest("p, article, ul, ol, section");
       if (isText || !!hasTextParent) {
-        el.style.display = "none";
+        el.style.opacity = "0";
         return;
       }
     }
 
-    el.style.display = "";
-    el.style.background = `radial-gradient(400px circle at ${event.clientX}px ${event.clientY}px, rgba(236, 233, 225, 0.05), transparent 60%)`;
+    el.style.opacity = "0.6";
+    // Only update transform (compositor-only, no repaint).
+    // The gradient is static and centered — we move the element instead.
+    el.style.transform = `translate3d(${event.clientX - 400}px, ${event.clientY - 400}px, 0)`;
   }, []);
 
   const handlePointerLeave = useCallback(() => {
     const el = elRef.current;
-    if (el) el.style.display = "none";
+    if (el) el.style.opacity = "0";
   }, []);
 
   useEffect(() => {
@@ -52,8 +54,18 @@ export default function CursorSpotlight() {
     <div
       ref={elRef}
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 z-[2] hidden opacity-60 mix-blend-screen md:block"
-      style={{ display: "none" }}
+      className="pointer-events-none fixed z-[2] hidden md:block"
+      style={{
+        width: 800,
+        height: 800,
+        top: 0,
+        left: 0,
+        opacity: 0,
+        background: "radial-gradient(circle, rgba(236, 233, 225, 0.05) 0%, transparent 60%)",
+        mixBlendMode: "screen",
+        willChange: "transform",
+        transform: "translate3d(-9999px, -9999px, 0)",
+      }}
     />
   );
 }

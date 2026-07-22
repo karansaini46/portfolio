@@ -115,3 +115,34 @@ button {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* Background blob animations — CSS @keyframes run on the compositor thread
+   (no main-thread JS per frame). Values match the original Framer Motion
+   animate arrays exactly. */
+@keyframes blob1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(50px, -40px) scale(1.1); }
+  66%      { transform: translate(-20px, 20px) scale(0.9); }
+}
+@keyframes blob2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(-60px, 50px) scale(1.2); }
+  66%      { transform: translate(30px, -30px) scale(0.8); }
+}
+@keyframes blob3 {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(40px, 40px); }
+}
+
+.animate-blob1 {
+  animation: blob1 15s ease-in-out infinite;
+  will-change: transform;
+}
+.animate-blob2 {
+  animation: blob2 18s ease-in-out 2s infinite;
+  will-change: transform;
+}
+.animate-blob3 {
+  animation: blob3 20s ease-in-out 1s infinite;
+  will-change: transform;
+}
