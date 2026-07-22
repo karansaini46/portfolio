@@ -37,11 +37,11 @@ export default function AnimatedBackground() {
       {/* Parallax Container */}
       <motion.div
         className="absolute inset-[-50px] z-[1]"
-        style={{ x: springX, y: springY }}
+        style={{ x: springX, y: springY, willChange: "transform" }}
       >
         {/* Soft Animated Glow Blobs */}
         <motion.div 
-          className="absolute top-[20%] left-[20%] w-[40vw] h-[40vw] rounded-full bg-accent-primary opacity-[0.03] blur-[100px]"
+          className="absolute top-[20%] left-[20%] w-[40vw] h-[40vw] rounded-full bg-accent-primary opacity-[0.03] blur-[100px] will-change-transform"
           animate={{
             x: [0, 50, -20, 0],
             y: [0, -40, 20, 0],
@@ -51,7 +51,7 @@ export default function AnimatedBackground() {
         />
         
         <motion.div 
-          className="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] rounded-full bg-accent-secondary opacity-[0.02] blur-[120px]"
+          className="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] rounded-full bg-accent-secondary opacity-[0.02] blur-[120px] will-change-transform"
           animate={{
             x: [0, -60, 30, 0],
             y: [0, 50, -30, 0],
@@ -61,7 +61,7 @@ export default function AnimatedBackground() {
         />
 
         <motion.div 
-          className="absolute top-[40%] right-[40%] w-[30vw] h-[30vw] rounded-full bg-accent-gold opacity-[0.02] blur-[90px]"
+          className="absolute top-[40%] right-[40%] w-[30vw] h-[30vw] rounded-full bg-accent-gold opacity-[0.02] blur-[90px] will-change-transform"
           animate={{
             x: [0, 40, -40, 0],
             y: [0, 40, -40, 0],

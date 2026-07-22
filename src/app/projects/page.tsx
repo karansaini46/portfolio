@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import CursorSpotlight from "@/components/CursorSpotlight";
 import Navigation from "@/components/Navigation";
@@ -70,12 +71,18 @@ export default function ProjectsPage() {
                   {/* Image Section */}
                   <div className="relative w-full aspect-[16/10] overflow-hidden bg-background">
                     {hasScreenshot ? (
-                      <motion.img 
+                      <motion.div
                         layoutId={`card-image-${project.slug}`}
-                        src={project.screenshots[0]} 
-                        alt={project.title}
-                        className="absolute inset-0 w-full h-full object-cover object-top opacity-80 transition-transform duration-700 ease-out group-hover:scale-105 group-hover:opacity-100"
-                      />
+                        className="absolute inset-0"
+                      >
+                        <Image 
+                          src={project.screenshots[0]} 
+                          alt={project.title}
+                          fill
+                          sizes="(min-width: 1024px) 50vw, 100vw"
+                          className="object-cover object-top opacity-80 transition-transform duration-700 ease-out group-hover:scale-105 group-hover:opacity-100"
+                        />
+                      </motion.div>
                     ) : (
                       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--surface-raised)_0%,var(--background)_100%)] flex items-center justify-center opacity-80 group-hover:opacity-100 transition-opacity">
                         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(236,233,225,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(236,233,225,0.03)_1px,transparent_1px)] bg-[size:24px_24px]" />
@@ -189,12 +196,19 @@ export default function ProjectsPage() {
                 {/* Modal Header / Image Area */}
                 <div className="relative w-full h-[40vh] min-h-[300px] overflow-hidden bg-background">
                   {selectedProject.screenshots && selectedProject.screenshots.length > 0 ? (
-                    <motion.img 
+                    <motion.div
                       layoutId={`card-image-${selectedProject.slug}`}
-                      src={selectedProject.screenshots[0]} 
-                      alt={selectedProject.title}
-                      className="absolute inset-0 w-full h-full object-cover object-top opacity-70"
-                    />
+                      className="absolute inset-0"
+                    >
+                      <Image 
+                        src={selectedProject.screenshots[0]} 
+                        alt={selectedProject.title}
+                        fill
+                        sizes="(min-width: 1024px) 60vw, 95vw"
+                        className="object-cover object-top opacity-70"
+                        priority
+                      />
+                    </motion.div>
                   ) : (
                     <div className="absolute inset-0 bg-gradient-to-br from-surface to-background" />
                   )}
@@ -227,7 +241,7 @@ export default function ProjectsPage() {
         )}
       </AnimatePresence>
 
-      <footer className="relative z-10 border-t border-border-subtle bg-surface/50 backdrop-blur-md px-5 py-8 text-center font-mono text-[10px] text-text-muted mt-20">
+      <footer className="relative z-10 border-t border-border-subtle bg-surface/50 backdrop-blur-md px-5 py-8 text-center font-mono text-[10px] text-text-muted mt-20 will-change-transform">
         © {new Date().getFullYear()} {portfolio.personalInfo.name}. Engineered with precision.
       </footer>
     </>

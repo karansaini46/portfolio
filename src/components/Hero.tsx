@@ -98,7 +98,7 @@ export default function Hero() {
 
       {/* Ambient glowing orb behind text */}
       <motion.div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-primary opacity-[0.04] blur-[120px] rounded-full pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-primary opacity-[0.04] blur-[120px] rounded-full pointer-events-none will-change-transform"
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 0.04 }}
         transition={{ delay: 0.5, duration: 2, ease: "easeOut" }}

@@ -18,7 +18,8 @@ export default function Navigation() {
   const triggerRef = useRef<HTMLButtonElement>(null);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    setIsScrolled(latest > 20);
+    const scrolled = latest > 20;
+    setIsScrolled((prev) => (prev === scrolled ? prev : scrolled));
   });
 
   const handleToggle = () => {

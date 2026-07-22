@@ -9,12 +9,12 @@ import { portfolio, supportingProjects } from "@/data/portfolio";
 const cardVariants = {
   hidden: (index: number) => {
     if (index === 0) {
-      return { opacity: 0, x: -64, y: 40, rotate: -4, scale: 0.96, filter: "blur(6px)" };
+      return { opacity: 0, x: -64, y: 40, rotate: -4, scale: 0.96 };
     }
     if (index === 3) {
-      return { opacity: 0, x: 64, y: 40, rotate: 4, scale: 0.96, filter: "blur(6px)" };
+      return { opacity: 0, x: 64, y: 40, rotate: 4, scale: 0.96 };
     }
-    return { opacity: 0, y: 55, scale: 0.95, filter: "blur(6px)" };
+    return { opacity: 0, y: 55, scale: 0.95 };
   },
   visible: (index: number) => ({
     opacity: 1,
@@ -22,7 +22,6 @@ const cardVariants = {
     y: 0,
     rotate: 0,
     scale: 1,
-    filter: "blur(0px)",
     transition: {
       duration: 0.75,
       ease: [0.16, 1, 0.3, 1] as const,

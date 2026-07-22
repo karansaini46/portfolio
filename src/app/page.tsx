@@ -25,7 +25,7 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="relative z-10 border-t border-border-subtle bg-surface/50 backdrop-blur-md px-5 py-8 text-center font-mono text-[10px] text-text-muted">
+      <footer className="relative z-10 border-t border-border-subtle bg-surface/50 backdrop-blur-md px-5 py-8 text-center font-mono text-[10px] text-text-muted will-change-transform">
         © {new Date().getFullYear()} {portfolio.personalInfo.name}. Engineered with precision.
       </footer>
     </>

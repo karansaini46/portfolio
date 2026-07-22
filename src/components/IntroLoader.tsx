@@ -53,8 +53,7 @@ export default function IntroLoader() {
           style={{ backgroundColor: "#070706" }}
           exit={{
             opacity: 0,
-            scale: 1.05,
-            filter: "blur(12px)",
+            scale: 1.08,
             transition: { duration: 0.4, ease: SHARP },
           }}
         >
