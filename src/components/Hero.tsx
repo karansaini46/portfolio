@@ -4,6 +4,9 @@ import { motion, Variants } from "framer-motion";
 import { portfolio } from "@/data/portfolio";
 import Link from "next/link";
 import MagneticButton from "./MagneticButton"; // We'll need to create this or ensure it exists
+import { useState, useEffect } from "react";
+
+let hasAnimated = false;
 
 const sentence: Variants = {
   hidden: { opacity: 1 },
@@ -28,6 +31,11 @@ const letter: Variants = {
 
 export default function Hero() {
   const headline = portfolio.personalInfo.headline;
+  const [isFirstMount] = useState(!hasAnimated);
+
+  useEffect(() => {
+    hasAnimated = true;
+  }, []);
 
   return (
     <section className="relative min-h-[95vh] flex items-center justify-center pt-20 px-6 overflow-hidden">
@@ -38,7 +46,7 @@ export default function Hero() {
         {/* Eyebrow */}
         <motion.div
           className="inline-flex items-center gap-2 rounded-full border border-border-visible bg-surface px-4 py-1.5 mb-8 shadow-sm"
-          initial={{ opacity: 0, y: -20, scale: 0.9 }}
+          initial={isFirstMount ? { opacity: 0, y: -20, scale: 0.9 } : false}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
@@ -55,7 +63,7 @@ export default function Hero() {
         <motion.h1
           className="text-5xl sm:text-7xl md:text-[5rem] lg:text-[6rem] font-sans font-bold tracking-tight text-text-primary text-balance leading-[1.05] mb-8 [perspective:1000px]"
           variants={sentence}
-          initial="hidden"
+          initial={isFirstMount ? "hidden" : "visible"}
           animate="visible"
         >
           {headline.split("").map((char, index) => (
@@ -73,7 +81,7 @@ export default function Hero() {
         {/* Subheadline */}
         <motion.p
           className="text-lg sm:text-xl text-text-secondary max-w-2xl text-balance leading-relaxed mb-12"
-          initial={{ opacity: 0, y: 20 }}
+          initial={isFirstMount ? { opacity: 0, y: 20 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
@@ -82,7 +90,7 @@ export default function Hero() {
 
         <motion.div
           className="flex flex-wrap items-center justify-center gap-4"
-          initial={{ opacity: 0, y: 20 }}
+          initial={isFirstMount ? { opacity: 0, y: 20 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
@@ -99,7 +107,7 @@ export default function Hero() {
       {/* Ambient glowing orb behind text */}
       <motion.div 
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-primary opacity-[0.04] blur-[120px] rounded-full pointer-events-none will-change-transform"
-        initial={{ scale: 0.8, opacity: 0 }}
+        initial={isFirstMount ? { scale: 0.8, opacity: 0 } : false}
         animate={{ scale: 1, opacity: 0.04 }}
         transition={{ delay: 0.5, duration: 2, ease: "easeOut" }}
       />
