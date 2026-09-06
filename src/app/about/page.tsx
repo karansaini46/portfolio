@@ -32,9 +32,9 @@ export default function AboutPage() {
       <Navigation />
       <CommandPalette />
       
-      <main className="relative z-10 mx-auto max-w-5xl px-6 pt-32 pb-24 min-h-screen">
+      <main className="relative z-10 mx-auto max-w-5xl px-6 pt-28 pb-12 min-h-screen">
         {/* Page Header */}
-        <div className="mb-24 md:mb-32 flex flex-col items-center text-center">
+        <div className="mb-12 md:mb-16 flex flex-col items-center text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -62,7 +62,7 @@ export default function AboutPage() {
           </motion.p>
         </div>
 
-        <div className="space-y-32 md:space-y-48">
+        <div className="space-y-16 md:space-y-24">
           {/* About Section */}
           <ScrollReveal>
             <About />

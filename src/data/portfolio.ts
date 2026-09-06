@@ -60,8 +60,7 @@ export const portfolio = {
     ],
   },
   navigation: [
-    { label: "Home", href: "/" },
-    { label: "Projects", href: "/projects" },
+    { label: "Projects", href: "/" },
     { label: "About", href: "/about" },
   ],
   personalInfo: {
@@ -170,6 +169,63 @@ export const portfolio = {
       description: "An autonomous GitHub AI agent that reads GitHub issues, writes code fixes, runs tests inside isolated sandboxes, and automatically opens pull requests with zero human intervention.",
       status: "in-development",
       category: "ai",
+    },
+    {
+      slug: "invoiceflow",
+      title: "InvoiceFlow",
+      type: "Freelancer Invoicing Platform",
+      badge: "Workflow Platform",
+      shortDescription:
+        "A freelancer invoicing platform with proposal building, automatic PDF generation, and Stripe checkout payments.",
+      fullDescription:
+        "A freelancer-focused invoicing platform with PDF invoice generation, email delivery, Stripe one-time payments, proposal builder, client management, and revenue dashboard.",
+      problem:
+        "Freelancers lose time manually creating invoices, sending payment reminders, and tracking income across multiple clients. InvoiceFlow automates invoice generation and client payments in one place.",
+      targetUsers: [
+        "Freelance developers",
+        "Contractors",
+        "Consultants",
+        "Small business owners",
+      ],
+      features: [
+        "Automated PDF Invoicing",
+        "Nodemailer Transactional Emails",
+        "Stripe One-Time Payments",
+        "Proposal and Quote Builder",
+        "Earnings Analytics Dashboard",
+      ],
+      stack: ["React", "Node.js", "PostgreSQL", "Prisma", "Puppeteer", "Stripe", "Nodemailer"],
+      highlights: [
+        "PDF invoice generation",
+        "Email delivery workflow",
+        "Stripe one-time payments",
+        "Proposal builder",
+        "Revenue dashboard",
+        "Client and invoice management",
+      ],
+      liveUrl: "https://invoice-flow-client.vercel.app",
+      githubUrl: "https://github.com/karansaini46/InvoiceFlow",
+      featured: false,
+      complexity: "Workflow Platform",
+      architecture: ["Payments", "PDFs", "Email", "Dashboard", "Data model"],
+      screenshots: ["/projects/invoiceflow/dashboard.png"],
+      description:
+        "A freelancer-focused invoicing platform with PDF invoice generation, email delivery, Stripe one-time payments, proposal builder, client management, and revenue dashboard.",
+      status: "stable",
+      category: "payment",
+      archNodes: [
+        { id: "client", label: "React Interface", type: "client", description: "Proposal builder and invoice analytics" },
+        { id: "api", label: "Express Server", type: "server", description: "API handling document data and analytics" },
+        { id: "stripe", label: "Stripe Checkout", type: "external", description: "Secures one-time card checkout payments" },
+        { id: "puppeteer", label: "Puppeteer PDF", type: "server", description: "Compiles styled HTML template to PDF" },
+        { id: "mail", label: "Nodemailer Client", type: "integration", description: "Transmits PDF invoices via SMTP" }
+      ],
+      archEdges: [
+        { from: "client", to: "api" },
+        { from: "api", to: "stripe" },
+        { from: "api", to: "puppeteer" },
+        { from: "api", to: "mail" }
+      ]
     },
     {
       slug: "ghostcto",
@@ -498,63 +554,6 @@ export const portfolio = {
         { from: "client", to: "api" },
         { from: "gateway", to: "db" },
         { from: "api", to: "db" }
-      ]
-    },
-    {
-      slug: "invoiceflow",
-      title: "InvoiceFlow",
-      type: "Freelancer Invoicing Platform",
-      badge: "Workflow Platform",
-      shortDescription:
-        "A freelancer invoicing platform with proposal building, automatic PDF generation, and Stripe checkout payments.",
-      fullDescription:
-        "A freelancer-focused invoicing platform with PDF invoice generation, email delivery, Stripe one-time payments, proposal builder, client management, and revenue dashboard.",
-      problem:
-        "Freelancers lose time manually creating invoices, sending payment reminders, and tracking income across multiple clients. InvoiceFlow automates invoice generation and client payments in one place.",
-      targetUsers: [
-        "Freelance developers",
-        "Contractors",
-        "Consultants",
-        "Small business owners",
-      ],
-      features: [
-        "Automated PDF Invoicing",
-        "Nodemailer Transactional Emails",
-        "Stripe One-Time Payments",
-        "Proposal and Quote Builder",
-        "Earnings Analytics Dashboard",
-      ],
-      stack: ["React", "Node.js", "PostgreSQL", "Prisma", "Puppeteer", "Stripe", "Nodemailer"],
-      highlights: [
-        "PDF invoice generation",
-        "Email delivery workflow",
-        "Stripe one-time payments",
-        "Proposal builder",
-        "Revenue dashboard",
-        "Client and invoice management",
-      ],
-      liveUrl: "https://invoice-flow-client.vercel.app",
-      githubUrl: "https://github.com/karansaini46/InvoiceFlow",
-      featured: false,
-      complexity: "Workflow Platform",
-      architecture: ["Payments", "PDFs", "Email", "Dashboard", "Data model"],
-      screenshots: ["/projects/invoiceflow/dashboard.png"],
-      description:
-        "A freelancer-focused invoicing platform with PDF invoice generation, email delivery, Stripe one-time payments, proposal builder, client management, and revenue dashboard.",
-      status: "stable",
-      category: "payment",
-      archNodes: [
-        { id: "client", label: "React Interface", type: "client", description: "Proposal builder and invoice analytics" },
-        { id: "api", label: "Express Server", type: "server", description: "API handling document data and analytics" },
-        { id: "stripe", label: "Stripe Checkout", type: "external", description: "Secures one-time card checkout payments" },
-        { id: "puppeteer", label: "Puppeteer PDF", type: "server", description: "Compiles styled HTML template to PDF" },
-        { id: "mail", label: "Nodemailer Client", type: "integration", description: "Transmits PDF invoices via SMTP" }
-      ],
-      archEdges: [
-        { from: "client", to: "api" },
-        { from: "api", to: "stripe" },
-        { from: "api", to: "puppeteer" },
-        { from: "api", to: "mail" }
       ]
     },
     {
