@@ -24,6 +24,14 @@ export default function ArchitectureExplorer() {
 
   // Explicit coordinates dictionary to ensure pixel-perfect node layouts
   const layoutMap: Record<string, Record<string, Coordinates>> = {
+    prometheus: {
+      ui: { x: 35, y: 150 },
+      api: { x: 105, y: 150 },
+      langgraph: { x: 175, y: 150 },
+      codeintel: { x: 175, y: 70 },
+      db: { x: 255, y: 70 },
+      sandbox: { x: 255, y: 220 },
+    },
     ghostcto: {
       client: { x: 40, y: 150 },
       api: { x: 150, y: 150 },

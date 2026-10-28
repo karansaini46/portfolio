@@ -44,9 +44,9 @@ describe("IntroLoader component", () => {
     // Should render loader initially
     expect(container.querySelector(".fixed")).toBeInTheDocument();
 
-    // Fast-forward 700ms (loader finishes at 650ms)
+    // Fast-forward 1700ms (loader finishes at 1600ms)
     act(() => {
-      vi.advanceTimersByTime(700);
+      vi.advanceTimersByTime(1700);
     });
 
     // Check that loader flag is stored in session storage
@@ -54,13 +54,12 @@ describe("IntroLoader component", () => {
   });
 
   it("skips rendering if loader-complete flag is present", async () => {
-    vi.useRealTimers(); // Restore real timers so async acts don't block
+    vi.useRealTimers();
     window.sessionStorage.setItem("has-seen-intro", "true");
     const { container } = render(<IntroLoader />);
     
-    // Let useEffect run, and allow exit animation (300ms) to complete
     await act(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 400));
+      await new Promise((resolve) => setTimeout(resolve, 600));
     });
 
     expect(container.firstChild).toBeNull();
@@ -112,5 +111,24 @@ describe("Portfolio Static Data", () => {
     expect(ether?.status).toBe("Completed");
     expect(ether?.category).toBe("Developer Tool · 3D Visualization · Code Intelligence");
     expect(ether?.archNodes?.length).toBeGreaterThan(0);
+  });
+
+  it("has PROMETHEUS placed in the 2nd position among listed projects with complete details", () => {
+    const listedProjects = portfolio.projects.filter((p) => p.status !== "in-development");
+    expect(listedProjects[1].slug).toBe("prometheus");
+
+    const prometheus = portfolio.projects.find((p) => p.slug === "prometheus");
+    expect(prometheus).toBeDefined();
+    expect(prometheus?.title).toBe("PROMETHEUS");
+    expect(prometheus?.githubUrl).toBe("https://github.com/karansaini46/PROMETHEUS");
+    expect(prometheus?.problem).toBeTruthy();
+    expect(prometheus?.fullDescription).toBeTruthy();
+    expect(prometheus?.targetUsers.length).toBeGreaterThanOrEqual(4);
+    expect(prometheus?.features.length).toBeGreaterThanOrEqual(5);
+    expect(prometheus?.stack.length).toBeGreaterThanOrEqual(5);
+    expect(prometheus?.highlights.length).toBeGreaterThanOrEqual(5);
+    expect(prometheus?.screenshots.length).toBeGreaterThanOrEqual(1);
+    expect(prometheus?.archNodes?.length).toBeGreaterThanOrEqual(5);
+    expect(prometheus?.archEdges?.length).toBeGreaterThanOrEqual(5);
   });
 });
